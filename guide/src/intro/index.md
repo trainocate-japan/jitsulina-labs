@@ -26,7 +26,7 @@ title: 入門編 演習手順
 
 ## [演習1](./lab1/index.md)
 ## [演習2](./lab2/index.md)
-## [演習3](./lab3/index.md)
+## [演習3 アカウント管理](./lab3/index.md)
 ## [演習4 プロセス管理とパッケージ管理](./lab4/index.md)
 ## [演習5](./lab5/index.md)
 
