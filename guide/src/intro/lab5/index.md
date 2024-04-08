@@ -1,7 +1,9 @@
 ---
 sidebar: auto
-title: 目次 
+title: 演習5 目次 
 ---
+
+[入門編の目次に戻る](../index.md)
 
 ### 実務で使えるLinux 入門編
 演習5【ネットワーク管理】

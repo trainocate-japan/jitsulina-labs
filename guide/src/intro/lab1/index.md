@@ -1,6 +1,6 @@
 ---
 sidebar: auto
-title: 入門編 演習1 手順
+title: 演習1 手順
 ---
 
 [入門編の目次に戻る](../index.md)
@@ -15,27 +15,172 @@ title: 入門編 演習1 手順
 ## 所要時間
 40分
 ## 実施内容
-- ディレクトリの確認と移動
-- ディレクトリの作成
+- ディレクトリの確認、作成、移動
 - viエディタでファイルの作成
 - ファイルのコピーと移動
 - パーミッションの確認
 - ハードリンクとシンボリックリンク
 - vimtutor で viの操作練習
 ## 演習手順
-### 演習：
-#### 1. ディレクトリの確認と移動
 
+::: warning
+演習を始める前に、環境にログインしてください。ログイン方法が不明な場合は講師に確認の上、以下の手順を参考にしてください
+<br>
+[演習環境へのログイン方法](../../howtologin/index.md)
+:::
 
-
-
-
-#### 1. /etcディレクトリにある、拡張子が .conf となっているファイルを全て
+### 演習：ディレクトリの確認、作成、移動
+#### 1. 現在のディレクトリを確認してください。もし、ec2-userのホームディレクトリでない場合は、ホームディレクトリに移動してください 
 
   ::: details 解答例
-  ps 
+  pwd
+  <br> 
+  カレントディレクトリが /home/ec2-user でない場合は、以下も実行
+  <br>
+  cd
   :::
- 
+
+#### 1. 演習用のディレクトリを作成します。ホームディレクトリに、lab1 というディレクトリを作成し、そこに移動してください。移動したら、カレントディレクトリを確認してください
+
+  ::: details 解答例
+  mkdir lab1
+  <br> 
+  cd lab1
+  <br>
+  pwd
+  :::
+
+#### 1. lab1ディレクトリのファイル一覧を表示してください
+
+  ::: details 解答例
+  ls
+  :::
+
+### 演習：テキストファイルの作成と表示
+#### 1. viエディタを使用して、file1.txt というファイル名でテキストファイルを作成してください。ファイルの中身は問いません
+> 記載内容が思いつかない場合は以下を書き込んでください（全てで無くとも構いません）
+
+  ```text
+  Humpty Dumpty sat on a wall,
+  Humpty Dumpty had a great fall.
+  All the King's horses, And all the King's men
+  Couldn't put Humpty together again!
+  ```
+  ::: details 解答例
+  vi file1.txt 
+  :::
+
+#### 1. file1.txt が問題なく作成されていることを、ファイルの中身を表示して確認してください
+
+  ::: details 解答例
+  cat file1.txt 
+  :::
+
+### 演習：ファイルのコピー
+#### 1. 作業用ディレクトリとして、lab1ディレクトリの下に以下を作成してください
+
+::: warning
+作業前に、カレントディレクトリが lab1 であることを必ず確認してください
+:::
+
+```
+dir1
+dir2
+dir2/dir21
+dir3/dir31
+```
+
+  ::: details 解答例
+  mkdir dir1
+  <br>
+  mkdir dir2
+  <br>
+  mkdir dir2/dir21
+  <br>
+  mkdir dir3/dir31/dir311
+  :::
+
+#### 1. うまく作成できないディレクトリがあったと思います。その原因を考え、エラーの起きない方法で再度実行してください
+
+  ::: details 解答例
+  dir2の下のdir22は、dir2が作成されてからでないと作成できない。dir2を先に作成するか、mkdirの-pオプションを利用する。dir3も同様
+  <br>
+  mkdir -p dir3/dir31/dir311
+  :::
+
+#### 1. 必要なディレクトリが全て作成されていることを確認してください。確認の方法は問いません
+
+  ::: tip
+  Linuxの操作に慣れている方は、 treeコマンドを利用しても構いません。環境にインストールされていない場合は、インストールしても結構です
+  :::
+
+#### 1. flle1.txt を、作成した全てのディレクトリにコピーします。ファイル名は、以下のルールを参考にして決めてください
+  - dir2にコピーするときは、file2.txt
+  - dir311にコピーするときは、file311.txt
+
+  ::: details 解答例
+  cp file1.txt dir1/
+  <br>
+  cp file1.txt dir2/file2.txt
+  <br>
+  cp file1.txt dir2/dir21/file21.txt
+  <br>
+  cp file1.txt dir3/dir31/dir311/file311.txt
+  :::
+
+#### 1. 各ファイルが正しくコピーできているかを確認してください。確認の方法は問いません
+
+  ::: details 解答例
+  ls dir1/
+  <br>
+  ls dir2/dir21/
+  <br>
+  ls dir3/dir31/dir311/
+  :::
+
+### 演習：絶対パスと相対パス
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   こぴーできなかったファイルの理由を考える
 
 
@@ -50,85 +195,18 @@ title: 入門編 演習1 手順
 
 
 1. カレントディレクトリを確認してください
-    <details>
-    <summary>
-        実行コマンド（解答）
-    </summary>
-    <div>
-        <code>
-            pwd
-        </code>
-    </div>
-    </details> 
 1. /tmpディレクトリを絶対パスで指定して、移動してください
-    <details>
-    <summary>
-        実行コマンド（解答）
-    </summary>
-    <div>
-        <code>
-            cd /tmp 
-        </code>
-    </div>
-    </details>
 1. /tmpディレクトリにどんなファイルがあるかを確認してください
-    <details>
-    <summary>
-        実行コマンド（解答）
-    </summary>
-    <div>
-        <code>
-            ls
-        </code>
-    </div>
-    </details>
 1. /tmpディレクトリのファイル一覧の詳細情報を確認してください
-    <details>
-    <summary>
-        実行コマンド（解答）
-    </summary>
-    <div>
-        <code>
-            ls -l
-        </code>
-    </div>
-    </details>
 1. /tmpディレクトリのファイル一覧の詳細情報を、隠しファイルも含めて確認してください
-    <details>
-    <summary>
-        実行コマンド（解答）
-    </summary>
-    <div>
-        <code>
-            ls -la
-        </code>
-    </div>
-    </details>
 1. ホームディレクトリに戻り、カレントディレクトリを確認してください
-    <details>
-    <summary>
-        実行コマンド（解答）
-    </summary>
-    <div>
-        <code>
-            cd
-            <br>
-            pwd
-        </code>
-    </div>
-    </details>
 #### 2. ディレクトリの作成
 1. ホームディレクトリに lab1 というディレクトリを作成してください
 1. lab1ディレクトリの中に、dir1ディレクトリを作成してください
 1. lab1ディレクトリに移動し、移動したことを確認してください
 #### 3. viエディタを操作しファイルを作成する
 1. viエディタで、lab1-file1.txtというファイルを作成してください。中身は以下としてください（コピペで構いません）
-    ```text
-    Humpty Dumpty sat on a wall,
-    Humpty Dumpty had a great fall.
-    All the King's horses, And all the King's men
-    Couldn't put Humpty together again!
-    ```
+
 1. ファイルが正常に保存されているか、中身を確認してください
 #### 4. ファイルのコピーや移動を行う
 1. lab1-file1.txt の複製をlab1ディレクトリに作成してください。名前は lab1-file2.txt としてください
