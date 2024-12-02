@@ -190,7 +190,13 @@ title: 演習4 目次
   <br>
   systemctl status httpd
   <br>
-  curl http://localhost
+
+  -----
+  Webアクセス確認例
+  <br>
+  curl http://localhost|head
+  <br>
+  ※表示量が多いため、headコマンドで先頭のみ表示する
   :::
 
 #### 5. httpd を停止してください。停止を確認後、アンインストールしてください
