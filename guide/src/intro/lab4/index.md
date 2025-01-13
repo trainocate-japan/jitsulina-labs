@@ -179,17 +179,17 @@ title: 演習4 目次
   dnf install httpd 
   :::
 
-#### 4. httpd を起動し、正常に起動したことを確認してください。可能であれば、curlコマンドなどでWebアクセスをしてみてください
+#### 4. httpd を起動し、正常に起動したことを確認してください。可能であれば、curlコマンドなどでWebアクセスをしてみてください。その際、表示される量が多いので、表示量を制限したりページ送りのできるコマンドをパイプラインで利用してください
 
   ::: details 解答例
   systemctl start httpd
   <br>
   systemctl status httpd
   <br>
-  curl http://localhost
+  curl http://localhost|head
   <br>
   <br>
-  ※表示が長い場合は、Ctrl + c キーで止めてください
+  ※表示量が多いため、headコマンドをパイプして最初の10行のみ表示
   :::
 
 #### 5. httpd を停止してください。停止を確認後、アンインストールしてください
