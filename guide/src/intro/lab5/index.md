@@ -19,11 +19,11 @@ title: 演習5 目次
 20分
 
 ## 実施内容
-- 演習：ipコマンドによるネットワーク設定確認
-- 演習：nmcliコマンドによるネットワーク設定確認
-- 演習：疎通確認
-- 演習：ネットワーク状態の確認
-- 演習：ネットワーク設定ファイルの編集
+- ipコマンドによるネットワーク設定確認
+- nmcliコマンドによるネットワーク設定確認
+- 疎通確認
+- ネットワーク状態の確認
+- ネットワーク設定ファイルの編集
 
 :::danger
 クラウド環境での演習の場合、ネットワークの設定を間違えると接続が切れたり再接続が不能になり復旧に時間がかかることがあります。十分注意しながら進めてください
@@ -34,9 +34,7 @@ title: 演習5 目次
 #### 1. 演習環境のホスト名のフルネーム（FQDN）を確認してください。方法は問いません
 
   ::: details 解答例
-  hostname 
-  <br>
-  hostnamectl status
+  `hostname`もしくは`hostnamectl status`
   <br>
   など
   :::
@@ -44,14 +42,13 @@ title: 演習5 目次
 #### 2. 演習環境に設定されているIPアドレスを、ipコマンドで確認してください
 
   ::: details 解答例
-  ip addr
+  `ip addr`
   :::
 
 #### 3. 演習環境に設定されているルーティングテーブル情報をipコマンドで表示し、デフォルトゲートウェイのIPアドレスを確認してください
 
   ::: details 解答例
-  ip route
-  <br>
+  `ip route`
   :::
 
 #### 4. ipコマンドの出力結果から、演習環境に設定されているDNSサーバーのアドレスを確認してください
@@ -63,9 +60,7 @@ title: 演習5 目次
 #### 5. 演習環境に設定されているDNSサーバーのアドレスを確認してください。方法は問いません。確認したDNSサーバーのアドレスは後で使うので記録するか、表示できるようにしておいてください
 
   ::: details 解答例
-  cat /etc/resolv.conf
-  <br>
-  nmcli device show
+  `cat /etc/resolv.conf`もしくは`nmcli device show`
   <br>
   など
   :::
@@ -74,11 +69,7 @@ title: 演習5 目次
 #### 1. 演習環境に設定されているIPアドレスを、nmcliコマンドで確認してください
 
   ::: details 解答例
-  nmcli
-  <br>
-  nmcli device show
-  <br>
-  nmcli connection show
+  `nmcli`、`nmcli device show`、`nmcli connection show`
   <br>
   など
   :::
@@ -109,12 +100,7 @@ title: 演習5 目次
 #### 3. pingコマンドを利用して、先ほど確認したDNSサーバーのアドレスにpingを実行してください。どんな結果になりましたか？
   
   ::: details 解答例
-  ping 10.0.0.2
-  <br>
-  PING 10.0.0.02 (10.0.0.2) 56(84) bytes of data.
-  <br>
-  応答なし、、、（環境によっては応答あり）
-  <br>
+  `ping 10.0.0.2`を実行して応答を確認する（アドレスは環境により異なります）
   <br>
   DNSサーバーによって、pingの応答がある場合もあれば、応答がない場合もある
   :::
@@ -137,23 +123,21 @@ title: 演習5 目次
 #### 1. ネットワークの接続状態を確認してください。取得する情報は、TCP/UDPの両方、サービス名の名前解決はなし、ホストが待ち受けしているポートのみ、です
 
   ::: details 解答例
-  ss -nutl
+  `ss -nutl`
   :::
 
 #### 2. Webサーバー（httpd）をインストールして起動してください
   
   ::: details 解答例
-  sudo dnf install -y httpd
-  <br>
-  sudo systemctl start httpd
+  `sudo dnf install -y httpd `でhttpdをインストール後、`sudo systemctl start httpd`でサービスを実行
   :::
 
 #### 3. 再び、ネットワークの接続状態を確認してください。Webサーバーを起動したことにより、何が変わったでしょうか？
 
   ::: details 解答例
-  ss -nutl
+  `ss -nutl`
   <br>
-  *:80 という記載が増え、tcp/80ポートでWebサーバーが接続待ちであることがわかります
+  *:80 という記載が増え、tcp/80ポートでWebサーバーが接続待ちであることが
   :::
 
 ### 演習：ネットワーク設定ファイルの編集
@@ -163,9 +147,7 @@ title: 演習5 目次
   ```
 
   ::: details 解答例
-  sudo vi /etc/hosts
-  <br>
-  cat /etc/hosts
+  `sudo vi /etc/hosts` で編集後、`cat /etc/hosts`で確認
   <br>
   以下のようになっていればよい
   ```

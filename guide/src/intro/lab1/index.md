@@ -15,16 +15,16 @@ title: 演習1 手順
 - ファイルの作成と編集に使われる viエディタ の操作を学びます
 
 ## 所要時間
-30分
+25分
 > オプション問題の実施は自由です。時間に余裕がある場合は実施してください（これまでの講義で取り扱っていない内容が含まれることもあります）
 
 ## 実施内容
 - ディレクトリの確認、作成、移動
 - テキストファイルの作成と表示
 - ファイルの操作
-- ハードリンクとシンボリックリンク
+- （オプション）ハードリンクとシンボリックリンク
 - パーミッション
-- vimtutor（オプション）
+- （オプション）vimtutor
 
 ## 演習手順
 
@@ -38,27 +38,29 @@ title: 演習1 手順
 #### 1. 現在のディレクトリを確認してください。もし、ec2-userのホームディレクトリでない場合は、ホームディレクトリに移動してください 
 
   ::: details 解答例
-  pwd
+  `pwd`
   <br> 
   カレントディレクトリが /home/ec2-user でない場合は、以下も実行
   <br>
-  cd
+  `cd`
   :::
 
 #### 2. 演習用のディレクトリを作成します。ホームディレクトリに、lab1 というディレクトリを作成し、そこに移動してください。移動したら、カレントディレクトリを確認してください
 
   ::: details 解答例
-  mkdir lab1
-  <br> 
-  cd lab1
+  - 以下の３コマンドを実行
   <br>
-  pwd
+  `mkdir lab1`
+  <br> 
+  `cd lab1`
+  <br>
+  `pwd`
   :::
 
 #### 3. lab1ディレクトリのファイル一覧を表示してください
 
   ::: details 解答例
-  ls
+  `ls`
   :::
 
 ### 演習：テキストファイルの作成と表示
@@ -72,13 +74,13 @@ title: 演習1 手順
   Couldn't put Humpty together again!
   ```
   ::: details 解答例
-  vi file1.txt 
+  `vi file1.txt`
   :::
 
 #### 2. file1.txt が問題なく作成されていることを、ファイルの中身を表示して確認してください
 
   ::: details 解答例
-  cat file1.txt 
+  `cat file1.txt`
   :::
 
 ### 演習：ディレクトリの作成
@@ -96,13 +98,15 @@ dir3/dir31/dir311
 ```
 
   ::: details 解答例
-  mkdir dir1
+  - 以下の４コマンドを実行
   <br>
-  mkdir dir2
+  `mkdir dir1`
   <br>
-  mkdir dir2/dir21
+  `mkdir dir2`
   <br>
-  mkdir dir3/dir31/dir311
+  `mkdir dir2/dir21`
+  <br>
+  `mkdir dir3/dir31/dir311`
   :::
 
 #### 2. うまく作成できないディレクトリがあったと思います。その原因を考え、エラーの起きない方法で再度実行してください
@@ -110,10 +114,17 @@ dir3/dir31/dir311
   ::: details 解答例
   dir2の下のdir22は、親ディレクトリであるdir2が作成されてからでないと作成できない。dir2を先に作成するか、mkdirの-pオプションを利用する。dir3も同様
   <br>
-  mkdir -p dir3/dir31/dir311
+  `mkdir dir2/dir21`
+  <br>
+  `mkdir -p dir3/dir31/dir311`
   :::
 
 #### 3. 必要なディレクトリが全て作成されていることを確認してください。確認の方法は問いません
+  ::: details 解答例
+  `ls -R`
+  <br>
+  など
+  :::
 
   ::: tip
   Linuxの操作に慣れている方は、 treeコマンドを利用しても構いません。環境にインストールされていない場合は、インストールしても結構です
@@ -127,29 +138,33 @@ dir3/dir31/dir311
 #### 1. flle1.txt を、作成した全てのディレクトリにコピーしてください
 
   ::: details 解答例
-  cp file1.txt dir1
+  - 以下のコマンドを実行
   <br>
-  cp file1.txt dir2
+  `cp file1.txt dir1`
   <br>
-  cp file1.txt dir2/dir21
+  `cp file1.txt dir2`
   <br>
-  cp file1.txt dir3/dir31/dir311
+  `cp file1.txt dir2/dir21`
+  <br>
+  `cp file1.txt dir3/dir31/dir311`
   :::
 
 #### 2. /etc/passwd をdir3/dir31/dir311ディレクトリにコピーしてください
 
   ::: details 解答例
-  cp /etc/passwd dir3/dir31/dir311
+  `cp /etc/passwd dir3/dir31/dir311`
   :::
 
 #### 3. 各ファイルが正しくコピーできているかを確認してください。確認の方法は問いません
 
   ::: details 解答例
-  ls dir1/
+  - 以下のコマンドを実行
   <br>
-  ls dir2/dir21/
+  `ls dir1/`
   <br>
-  ls dir3/dir31/dir311/
+  `ls dir2/dir21/`
+  <br>
+  `ls dir3/dir31/dir311/`
   :::
 
 #### 4. コピーした全ファイルの名前を変更をします。各ディレクトリにあるファイル名を、以下のルールに則って変更してください
@@ -158,13 +173,15 @@ dir3/dir31/dir311
   - dir311のpasswdは、passwd311.txt
 
   ::: details 解答例
-  mv dir2/file1.txt dir2/file2.txt
+  - 以下のコマンドを実行
   <br>
-  cd dir3/dir31/dir311
+  `mv dir2/file1.txt dir2/file2.txt`
   <br>
-  mv file1.txt file311.txt
+  `cd dir3/dir31/dir311`
   <br>
-  mv passwd passwd311.txt
+  `mv file1.txt file311.txt`
+  <br>
+  `mv passwd passwd311.txt`
   :::
 
   ::: tip
@@ -176,12 +193,13 @@ dir3/dir31/dir311
   - lab1/dir3/dir31/dir311/file311.txt
 
   ::: details 解答例
-  cd dir2/dir21
+  - 以下のコマンドを実行
   <br>
-  cp ~/lab1/file1.txt .
+  `cd dir2/dir21`
   <br>
-  cp ~/lab1/dir3/dir31/dir311/file311.txt .  
+  `cp ~/lab1/file1.txt .`
   <br>
+  `cp ~/lab1/dir3/dir31/dir311/file311.txt . `
   :::
 
 ::: tip
@@ -199,29 +217,31 @@ dir3/dir31/dir311
 #### 1. カレントディレクトリをlab1に戻し、確認してください。次に、dir3/dir31/dir311/file311.txtをカレントディレクトリにコピーしてください
 
   ::: details 解答例
-  cd ~/lab1
+  - 以下のコマンドを実行
   <br>
-  pwd
+  `cd ~/lab1`
   <br>
-  cp dir3/dir31/dir311/file311.txt .
+  `pwd`
+  <br>
+  `cp dir3/dir31/dir311/file311.txt .`
   :::
 
 #### 2. パスが長くて作業が大変でした。このファイルにはlab1ディレクトリから素早く操作できるようにしましょう。まずはハードリンクをlab1に作成してください。名前はfile311-hardlink.txtとしてください
 
   ::: details 解答例
-  ln dir3/dir31/dir311/file311.txt ./file311-hardlink.txt
+  `ln dir3/dir31/dir311/file311.txt ./file311-hardlink.txt`
   :::
 
 #### 3. 次はシンボリックリンクを作成してください。名前は、file311-symlink.txtとしてください
 
   ::: details 解答例
-  ln -s dir3/dir31/dir311/file311.txt ./file311-symlink.txt
+  `ln -s dir3/dir31/dir311/file311.txt ./file311-symlink.txt`
   :::
 
 #### 4. 結果を確認してください。ハードリンクとシンボリックリンクではどこが違うでしょうか？
 
   ::: details 解答例
-  ls -l
+  `ls -l`
   <br>
   ハードリンクは、リンク数が２となっている。シンボリックリンクでは１で、矢印でリンク先を表示している
   :::
@@ -229,7 +249,7 @@ dir3/dir31/dir311
 #### 5. リンク元のファイルの情報を表示してください。結果はどうでしょうか？
 
   ::: details 解答例
-  ls -l dir3/dir31/dir311/file311.txt
+  `ls -l dir3/dir31/dir311/file311.txt`
   <br>
   ハードリンクされているのでリンク数が２となっている。シンボリックリンクされているかはわからない
   :::
@@ -238,9 +258,11 @@ dir3/dir31/dir311
 #### 1. dir3/dir31/dir311/passwd311.txtのパーミッションを確認し、誰に何ができるかを把握してください
 
   ::: details 解答例
-  cd dir3/dir31/dir311/
+  - 以下のコマンドを実行
   <br>
-  ls -l passwd
+  `cd ~/lab/dir3/dir31/dir311/`
+  <br>
+  `ls -l passwd`
   <br>
   rw-r--r-- なので、所有者の読み書き、グループとそれ以外のユーザーには読み込みのみしかできない
   :::
@@ -248,11 +270,11 @@ dir3/dir31/dir311
 #### 2. 誰も読み取りしかできないようにパーミッションを変更してください。方法は問いません
 
   ::: details 解答例
-  chmod a-w passwd
+  `chmod a-w passwd`
   <br>
   もしくは
   <br>
-  chmod 444 passwd
+  `chmod 444 passwd`
   :::
 
 #### 3. 所有者ですら書き込みができなくなったことを、viで編集して確認してください。
@@ -277,7 +299,7 @@ dir3/dir31/dir311
   所有者がrootユーザーであり、その他のユーザーへの権限が一切ないことから、現在ログイン中のユーザーでは参照も権限の変更もできない
   :::
 
-### 演習：vimtutor（オプション）
+### （オプション）演習：vimtutor
 #### 1. 演習が早く終わり時間のある方は、vimtutorコマンドを実行し、viエディタを学習してください
 
 ::: tip

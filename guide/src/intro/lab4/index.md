@@ -13,43 +13,43 @@ title: 演習4 目次
 - アプリケーションソフトウェアの管理単位であるプロセスの基本的な確認方法や操作方法を学びます
 - アプリケーションパッケージのインストールとアンインストール、代表的なパッケージ管理コマンドであるdnfやrpmの基本的な操作方法を学びます 
 ## 所要時間
-40分
+30分
 ## 実施内容
 - プロセスの稼働状況の確認
-- ジョブの管理
+- （オプション）ジョブの管理
 - パッケージ管理とサーバープロセスの管理
 ## 演習内容
 ### 演習：プロセスの稼働状況の確認
 #### 1. プロセス一覧を確認するコマンドを実行してください。表示形式は問いません
 
   ::: details 解答例
-  ps 
+  `ps`
   :::
 
 #### 2. プロセス一覧を確認するコマンドを実行してください。今回は、全てのプロセスを詳細に長いフォーマットで表示してください
 
   ::: details 解答例
-  ps -ef 
+  `ps -ef`
   :::
 
 #### 3. 全てのユーザーのbashプロセスのみを表示してください。パイプラインを使いましょう。フォーマットは問いません
 
   ::: details 解答例
-  ps -ef|grep bash
+  `ps -ef|grep bash`
   :::
 
 #### 4. ツリー状に全プロセスを表示し、PIDが1番のプロセスが何かを確認してください
 
   ::: details 解答例
-  pstree -p
+  `pstree -p`
   :::
 
 #### 5. 現在稼働中のプロセスをリアルタイムで確認できるコマンドを実行し、最もcpuを使用しているプロセス名を確認してください。確認が終わったら実行したコマンドを終了しておいてください
 
   ::: details 解答例
-  top
+  `top`
   <br>
-  q ボタンで終了
+  q キーで終了
   :::
 
 #### 6. 「vmstat」を実行してください。何がおきるでしょうか？
@@ -64,11 +64,11 @@ title: 演習4 目次
   メモリの状況やCPU使用率などが1秒ごとに表示される。Ctrl+C キーを押すことで停止
   :::
 
-### 演習：ジョブの管理
+### （オプション）演習：ジョブの管理
 #### 1. vmstat 1 を実行し、その結果をsystem-status.txt ファイルに保存してください。10秒ほど実行したら保存を停止してください
 
   ::: details 解答例
-  vmstat 1 > system-status.txt
+  `vmstat 1 > system-status.txt`
   <br>
   Ctrl + C キーで停止
   :::
@@ -82,15 +82,13 @@ title: 演習4 目次
 #### 3. system-status.txt を表示してvmstatの実行結果を確認してください
 
   ::: details 解答例
-  cat system-status.txt
+  `cat system-status.txt`
   :::
 
 #### 4. 現在時刻をsystem-status.txtの最後に追記しておいてください。次に進む前に結果を確認してください
 
   ::: details 解答例
-  date >> system-status.txt
-  <br>
-  cat system-status.txt
+  `date >> system-status.txt` の実行後、`cat system-status.txt` で確認
   <br>
   ファイルの最後にdateコマンドの結果が記載されていればよい
   :::
@@ -101,7 +99,7 @@ title: 演習4 目次
   :::
 
   ::: details 解答例
-  vmstat 1 >> system-status.txt
+  `vmstat 1 >> system-status.txt`
   :::
 
 #### 6. vmstat 1 がフォアグラウンドで実行されているため、このままではシェルの操作を行えません。vmstat 1 の実行を一時停止してください
@@ -113,17 +111,17 @@ title: 演習4 目次
 #### 7. このままではファイルへの記録が止まったままです。バックグラウンドで処理を続行してください
 
   ::: details 解答例
-  jobs
+  `jobs`
   <br>
   ジョブ番号を確認
   <br>
-  bg ジョブ番号
+  `bg ジョブ番号`
   :::
 
 #### 8. ジョブの状況を確認してください。vmstat 1 は実行中(running)ですか？
 
   ::: details 解答例
-  jobs
+  `jobs`
   :::
 
 #### 9. tail -f system-status.txt コマンドを実行して結果を確認し、何が起きているかを説明してください。確認が終わったらtailコマンドを終了してください
@@ -139,17 +137,13 @@ title: 演習4 目次
 #### 10. vmstat 1 の実行を終了してください。方法は何でも構いません
 
   ::: details 解答例
-  ps|grep vmstat
-  <br>
-  kill プロセスID
-  <br>
+  `ps|grep vmstat` で実行中のvmstatのプロセスIDを確認し、`kill プロセスID`でkillする
   <br>
   もしくは
   <br>
+  `fg vmstatのジョブ番号`でフォアグランドに移動させたあと、Ctrl + C キーで終了
   <br>
-  fg vmstatのジョブ番号
-  <br>
-  Ctrl + C キー
+  など
   :::
 
 ### 演習：パッケージ管理とサーバープロセスの管理
@@ -161,7 +155,7 @@ title: 演習4 目次
 #### 1. rootユーザーに変更してください。パスワードは password です
 
   ::: details 解答例
-  su -
+  `su -`
   <br>
   パスワードを入力
   :::
@@ -169,25 +163,22 @@ title: 演習4 目次
 #### 2. httpd (Apache Web Server) が、まだインストールされていないことを確認してください。確認方法は問いません
 
   ::: details 解答例
-  rpm -qa|grep httpd
+  `rpm -qa|grep httpd`
   など
   :::
 
 #### 3. httpd (Apache Web Server) を dnf コマンドでインストールしてください
 
   ::: details 解答例
-  dnf install httpd 
+  `dnf install httpd`
   :::
 
 #### 4. httpd を起動し、正常に起動したことを確認してください。可能であれば、curlコマンドなどでWebアクセスをしてみてください。その際、表示される量が多いので、表示量を制限したりページ送りのできるコマンドをパイプラインで利用してください
 
   ::: details 解答例
-  systemctl start httpd
+  `systemctl start httpd`を実行後、`systemctl status httpd`で動作確認
   <br>
-  systemctl status httpd
-  <br>
-  curl http://localhost|head
-  <br>
+  `curl http://localhost|head`でWebページを表示
   <br>
   ※表示量が多いため、headコマンドをパイプして最初の10行のみ表示
   :::
@@ -195,32 +186,32 @@ title: 演習4 目次
 #### 5. httpd を停止してください。停止を確認後、アンインストールしてください
 
   ::: details 解答例
-  systemctl stop httpd
+  - 以下のコマンドを続けて実行
   <br>
-  systemctl status httpd
+  `systemctl stop httpd`
   <br>
-  dnf remove httpd
+  `systemctl status httpd`
+  <br>
+  `dnf remove httpd`
   :::
 
 #### 6. httpd がアンインストールされたことを確認してください。方法は問いません
 
   ::: details 解答例
-  rpm -qa|grep httpd
+  `rpm -qa|grep httpd`
   など
   :::
 
 #### 7. dnfコマンドを使い、httpd のRPMパッケージファイルをカレントディレクトリにダウンロードしてください。ダウンロードができたことも確認してください
 
   ::: details 解答例
-  dnf download httpd
-  <br>
-  ls -l
+  `dnf download httpd`でダウンロード後、`ls -l`でファイル名を確認
   :::
 
 #### 8. rpmコマンドを使って、ダウンロードしたrpmファイルをインストールしてください。結果はどうでしょうか？
 
   ::: details 解答例
-  rpm -ivh httpd-2.4.57-8.el9.x86_64.rpm
+  `rpm -ivh httpd-2.4.57-8.el9.x86_64.rpm`
   <br>
   エラー（依存性の欠如）が発生し、インストールできない
   :::

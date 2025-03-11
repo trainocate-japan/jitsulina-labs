@@ -27,25 +27,25 @@ title: 演習3 目次
 #### 1. 現在ログインしているユーザーの情報を詳細に表示してください。少なくともユーザーIDと所属グループは表示してください
 
   ::: details 解答例
-  id
+  `id`
   :::
 
 #### 2. 演習環境のLinuxに登録済みのユーザー一覧を表示してください。方法は問いません
 
   ::: details 解答例
-  cat /etc/passwd
+  `cat /etc/passwd`
   :::
 
 #### 3. 演習環境のLinuxに登録済みのグループ一覧を表示してください。方法は問いません
 
   ::: details 解答例
-  cat /etc/group
+  `cat /etc/group`
   :::
 
 #### 4. 次は、ec2-userが所属しているグループだけを表示してください。方法は問いません
 
   ::: details 解答例
-  cat /etc/group|grep ec2-user
+  `cat /etc/group|grep ec2-user`
   :::
 
 ### 演習：新規ユーザーの作成
@@ -59,19 +59,19 @@ title: 演習3 目次
   ```
 
   :::tip
-  ディストリビューションや設定によって rootユーザーへの変更方法は異なります。また、rootユーザーにパスワードが設定されてないこともあります。その場合はsudoコマンドでのみroot権限を行使できます。rootユーザーにパスワードが設定されていないのはセキュリティ上の利用のため、むやみにパスワードは設定しないほうがよいです
+  ディストリビューションや設定によって rootユーザーへの変更方法は異なります。また、rootユーザーにパスワードが設定されてないこともあります。その場合はsudoコマンドでのみroot権限を行使できます。rootユーザーにパスワードが設定されていないのは、rootユーザーへの変更を出来ないようにするというセキュリティ上の理由のため、むやみにパスワードは設定しないほうがよい場合もあります
   :::
 
 #### 2. user1 という新規ユーザーを作成してください。ホームディレクトリはユーザー名と同じ、シェルはBash、グループの指定は不要です。
 
   ::: details 解答例
-  useradd user1 -m -s /bin/bash
+  `useradd user1 -m -s /bin/bash`
   :::
 
 #### 3. ユーザーが作成されたことを確認してください。方法は問いません
 
   ::: details 解答例
-  cat /etc/passwd
+  `cat /etc/passwd`
   :::
 
 #### 4. exitコマンドを実行して、ec2-userに戻ってください
@@ -87,7 +87,7 @@ title: 演習3 目次
 #### 5. ec2-user に戻ったことが確認できたら、user1ユーザーに切り替えてください
 
   ::: details 解答例
-  su - user1
+  `su - user1`
   <br>
   しかし結果は、、、
   :::
@@ -101,7 +101,7 @@ title: 演習3 目次
 #### 7. user1にパスワードを設定してください。パスワードは忘れなければ何でも構いません（password など）。ただし、現在ec2-userのため、権限を変更しないと作業出来ないはずです。
 
   ::: details 解答例
-  sudo passwd user1
+  `sudo passwd user1`
   :::
 
   :::danger
@@ -111,7 +111,7 @@ title: 演習3 目次
 #### 8. 無事パスワードの変更ができたら、user1ユーザーに変更してください
 
   ::: details 解答例
-  su - user1
+  `su - user1`
   :::
 
 ### 演習：パーミッションとグループ
@@ -123,7 +123,7 @@ title: 演習3 目次
 #### 1. user1とec2-userで共有したいファイルやディレクトリがあるとします。ひとまず、ec2-userのホームディレクトリの内容を表示してください。結果はどうでしたか？
 
   ::: details 解答例
-  ls /home/ec2-user
+  `ls /home/ec2-user`
   <br>
   上記を実行しても、許可がない (Permission denied) というエラーで参照できない
   :::
@@ -143,9 +143,7 @@ title: 演習3 目次
 #### 3. 以降の作業はroot権限が必要なものがあります。rootユーザーに変更してください。方法は問いません。ただし、user1からは、環境によってはrootユーザーに変更ができないかもしれません。コマンドを考えて実行してみましょう
 
   ::: details 解答例
-  exit
-  <br>
-  sudo su -
+  `exit`を実行してから、`sudo su -`
   <br>
   ※user1にはsudoの権限がないため、上記例ではまずec2-userに戻ってからsudoを実行している
   :::
@@ -157,44 +155,46 @@ title: 演習3 目次
 #### 4. ec-2userとuser1を所属させるグループを作成してください。グループ名は「common」としてください
 
   ::: details 解答例
-  groupadd common 
+  `groupadd common`
   :::
 
 #### 5. 共有ディレクトリを作成します。/optディレクトリ内に shared ディレクトリを作成してください
 
   ::: details 解答例
-  mkdir /opt/shared
+  `mkdir /opt/shared`
   :::
 
 #### 6. /opt/sharedディレクトリのグループを、commonグループに変更してください
 
   ::: details 解答例
-  chgrp common /opt/shared 
+  `chgrp common /opt/shared`
   :::
 
 #### 7. ここまでの作業内容を確認してください。/opt/sharedディレクトリのグループがcommonになっているはずです
 
   ::: details 解答例
-  ls -ld /opt/shared
+  `ls -ld /opt/shared`
   :::
 
 #### 8. このままでは、commonグループのメンバーでは書き込みが行えません。ディレクトリのグループのパーミッションを rwx に変更してください
 
   ::: details 解答例
-  chmod g+w /opt/shared 
+  `chmod g+w /opt/shared`
   :::
 
 #### 9. これまでの作業結果を確認してください。/opt/sharedディレクトリのグループがcommonで、権限がrwxになっているはずです。確認の方法は問いません
   ::: details 解答例
-  ls -ld /opt/shared
+  `ls -ld /opt/shared`
   ::: 
 
 #### 10. 共有ディレクトリの準備ができました。次に、ec2-userとuser1を、common グループに参加させてください
 
   ::: details 解答例
-  usermod -aG common ec2-user
+  - 以下のコマンドを続けて実行
   <br>
-  usermod -aG common user1
+  `usermod -aG common ec2-user`
+  <br>
+  `usermod -aG common user1`
   :::
 
 #### 11. rootユーザーの権限での作業はここで終了です。rootユーザーで作業していた場合は、exitコマンドを実行してec2-userのシェルに戻ってください
@@ -220,23 +220,21 @@ title: 演習3 目次
 #### 14. 上記の対策をとってから、再度/opt/sharedディレクトリにファイルを作成してみてください。今度はうまくいくはずです
   
   ::: details 解答例
-  exit してログインし直す、もしくは再度、su - ec2-userする、など
+  `exit` してログインし直す、もしくは再度、`su - ec2-user`する、など
   <br>
-  vi /opt/shared/hoge、など (cpでもよい)
+  `vi /opt/shared/hoge`、など (`cp`でもよい)
   ::: 
 
 #### 15. user1にユーザーを変更し、同様に/opt/sharedディレクトリにファイルを作成してみてください
 
   ::: details 解答例
-  su - user1
-  <br> 
-  vi /opt/shared/moge、など
+  `su - user1`を実行してから、`vi /opt/shared/moge`を実行する、など
   :::
 
 #### 16. ec2-userに戻り、user1ユーザーを、ディレクトリも含めて削除しておいてください
 
   ::: details 解答例
-  sudo userdel -r user1
+  `sudo userdel -r user1`
   ::: 
 
   :::warning
