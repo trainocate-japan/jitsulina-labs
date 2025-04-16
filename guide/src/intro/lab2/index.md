@@ -117,7 +117,7 @@ title: 演習2 目次
 #### 2. 先ほどの検索結果は何行あったでしょうか？ wcコマンドに -l オプションを付けると行数を表示できます。パイプをうまく使い、wcコマンドにgrepの結果を渡してください 
 
   ::: details 解答例
-  `grep server *.conf|wc -l`
+  `grep -in server *.conf|wc -l`
   :::
 
 #### 3. 手順１と２の結果を、files.txtに追記してください。今回の追記の前に区切りの文字「-----」を挿入してみましょう。区切り文字は、echo "-----" を実行すると挿入できます。実行が終わったら、結果を確認してください
@@ -127,9 +127,9 @@ title: 演習2 目次
   <br>
   `echo "-----" >> files.txt`
   <br>
-  `grep server *.conf >> files.txt`
+  `grep -in server *.conf >> files.txt`
   <br>
-  `grep server *.conf|wc -l >> files.txt`
+  `grep -in server *.conf|wc -l >> files.txt`
   <br>
   `cat files.txt`
   :::
